@@ -23,8 +23,16 @@ import javax.persistence.Table;
                 ),
        @NamedQuery(
                name = "getReportsCount",
-               query = "SELECT COUNT(r) FROM Report AS r"       
+               query = "SELECT COUNT(r) FROM Report AS r"
                ),
+       @NamedQuery(
+               name ="getMyAllReports",
+               query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"
+               ),
+       @NamedQuery(
+               name = "getMyReportsCount",
+               query = "SELECT COUNT (r) FROM Report AS r WHERE r.employee = :employee"
+               )
 })
 @Entity
 public class Report {
@@ -32,24 +40,24 @@ public class Report {
    @Column(name="id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id;
-   
+
    @ManyToOne
    @JoinColumn(name= "employee_id", nullable = false)
    private Employee employee;
-   
+
    @Column(name = "report_date", nullable = false)
    private Date report_date;
-   
+
    @Column(name= "title", length = 255, nullable = false)
    private String title;
-   
+
    @Lob
    @Column(name = "content", nullable = false)
    private String content;
-   
+
    @Column(name= "created_at", nullable = false)
    private Timestamp created_at;
-   
+
    @Column(name= "updated_at", nullable = false)
    private Timestamp updated_at;
 
@@ -108,5 +116,5 @@ public Timestamp getUpdated_at() {
 public void setUpdated_at(Timestamp updated_at) {
     this.updated_at = updated_at;
 }
-   
+
 }

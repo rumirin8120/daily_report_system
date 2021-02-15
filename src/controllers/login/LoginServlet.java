@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 
            String password = EncryptUtil.getPasswordEncrypt(
                    plain_pass,
-                   (String)this.getServletContext().getAttribute("peppr")
+                   (String)this.getServletContext().getAttribute("pepper")
                    );
 
            // 社員番号とパスワードが正しいかチェックする

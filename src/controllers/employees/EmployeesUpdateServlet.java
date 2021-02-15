@@ -64,7 +64,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
               e.setPassword(
                       EncryptUtil.getPasswordEncrypt(
                               password,
-                          (String)this.getServletContext().getAttribute("peppr")
+                          (String)this.getServletContext().getAttribute("pepper")
                               )
                       );
           }
